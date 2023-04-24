@@ -4,7 +4,7 @@ import { Breadcrumb,SimpleCard } from '../../../components';
 //import { Breadcrumb, SimpleCard } from 'app/components';
 import PlacingRadioLabel from './PlacingRadioLabel';
 import SimpleRadio from './SimpleRadio';
-import StandaloneRadio from './StandaloneRadio';
+//import StandaloneRadio from './StandaloneRadio';
 
 const Container = styled('div')(({ theme }) => ({
   margin: '30px',
@@ -23,13 +23,7 @@ const AppRadio = () => {
       </Box>
 
       <Stack spacing={3}>
-        <SimpleCard title="Simple Radio Button">
-          <SimpleRadio />
-        </SimpleCard>
 
-        <SimpleCard title="Standalone Radio Button">
-          <StandaloneRadio />
-        </SimpleCard>
 
         <SimpleCard title="Label Placement">
           <PlacingRadioLabel />
