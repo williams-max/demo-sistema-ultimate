@@ -7,12 +7,9 @@ import routes from './routes';
 
 import './fake-db';
 
+/*
 
-const App = () => {
-  const content = useRoutes(routes);
-
-  return (
-    <SettingsProvider>
+  <SettingsProvider>
       <AuthProvider>
         <MatxTheme>
         <CssBaseline />
@@ -21,6 +18,12 @@ const App = () => {
 
       </AuthProvider>
     </SettingsProvider>
+*/
+const App = () => {
+  const content = useRoutes(routes);
+
+  return (
+    <h1>hola</h1>
   );
 };
 /*
