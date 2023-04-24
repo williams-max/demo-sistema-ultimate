@@ -23,7 +23,15 @@ const App = () => {
   const content = useRoutes(routes);
 
   return (
-    <h1>hola</h1>
+    <SettingsProvider>
+      <AuthProvider>
+        <MatxTheme>
+          <CssBaseline />
+          {content}
+        </MatxTheme>
+
+      </AuthProvider>
+    </SettingsProvider>
   );
 };
 /*
