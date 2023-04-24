@@ -1,8 +1,8 @@
-import React from 'react'
-import Recepcion from '../../app/modules/recepcion/Recepcion';
-import MuiNavbar from '../../core/components/navbar/MuiNavbar';
 
-import { Box, styled, useTheme } from '@mui/material';
+import Recepcion from '../../app/modules/recepcion/Recepcion';
+
+
+import {  styled} from '@mui/material';
 
 const Container = styled('div')(({ theme }) => ({
     margin: '10px',

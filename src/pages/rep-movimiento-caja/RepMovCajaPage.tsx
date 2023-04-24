@@ -1,8 +1,8 @@
-import React from 'react'
-import RepMovCaja from '../../app/modules/rep-movimiento-caja/RepMovCaja';
-import MuiNavbar from '../../core/components/navbar/MuiNavbar';
 
-import { Box, styled, useTheme } from '@mui/material';
+import RepMovCaja from '../../app/modules/rep-movimiento-caja/RepMovCaja';
+
+
+import {  styled} from '@mui/material';
 
 const Container = styled('div')(({ theme }) => ({
     margin: '10px',

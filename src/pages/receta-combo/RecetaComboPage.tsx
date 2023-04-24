@@ -1,11 +1,10 @@
-import React from 'react'
-import InventarioCierre from '../../app/modules/inventario-cierre/InventarioCierre';
+
 import RecetaCombo from '../../app/modules/receta/RecetaCombo';
 //import Solicitudes from '../../app/modules/solicitudes/Solicitudes';
 
 
 
-import { Box, styled, useTheme } from '@mui/material';
+import {  styled} from '@mui/material';
 
 const Container = styled('div')(({ theme }) => ({
     margin: '10px',

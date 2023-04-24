@@ -1,10 +1,9 @@
-import React from 'react'
-import InventarioCierre from '../../app/modules/inventario-cierre/InventarioCierre';
+
 import Solicitudes from '../../app/modules/solicitudes/Solicitudes';
-import MuiNavbar from '../../core/components/navbar/MuiNavbar';
 
 
-import { Box, styled, useTheme } from '@mui/material';
+
+import {  styled } from '@mui/material';
 
 const Container = styled('div')(({ theme }) => ({
     margin: '10px',

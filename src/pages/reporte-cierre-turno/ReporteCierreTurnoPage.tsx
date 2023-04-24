@@ -1,8 +1,8 @@
-import React from 'react'
-import ReporteCierreTurno from '../../app/modules/reporte-cierre-turno/ReporteCierreTurno';
-import MuiNavbar from '../../core/components/navbar/MuiNavbar';
 
-import { Box, styled, useTheme } from '@mui/material';
+import ReporteCierreTurno from '../../app/modules/reporte-cierre-turno/ReporteCierreTurno';
+
+
+import { styled} from '@mui/material';
 
 const Container = styled('div')(({ theme }) => ({
     margin: '10px',

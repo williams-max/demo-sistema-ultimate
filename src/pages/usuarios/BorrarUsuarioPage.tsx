@@ -1,10 +1,8 @@
-import React from 'react'
 
-import Venta from '../../app/modules/venta/Venta';
 //import Solicitudes from '../../app/modules/solicitudes/Solicitudes';
 
 
-import { Box, styled, useTheme } from '@mui/material';
+import { styled } from '@mui/material';
 import BorrarUsuario from '../../app/modules/usuarios/borrar-usuario/BorrarUsuario';
 
 const Container = styled('div')(({ theme }) => ({
