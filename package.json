@@ -100,5 +100,8 @@
     "react-app-rewired": "^2.2.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.0"
+  },
+  "overrides": {
+    "typescript": "^5.0.2"
   }
 }
