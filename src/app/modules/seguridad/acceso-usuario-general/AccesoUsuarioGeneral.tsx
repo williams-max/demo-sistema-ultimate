@@ -1,0 +1,450 @@
+import { Typography, Button, Collapse, TextField, Modal, Grid, InputAdornment, ListItemButton, List, ListItemText } from '@mui/material'
+import React, { useState } from 'react'
+
+import PaletaParentConslidados from './PaletaParentConsolidados';
+//import PaletaChildConsolidados from './PaletaChildConsolidados';
+//import Paleta from '../../../core/components/common/Paleta'
+import AddIcon from '@mui/icons-material/Add';
+import SendIcon from '@mui/icons-material/Send';
+
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+
+import TablaChildUsuarioGeneral from "./TablaChildUsuarioGeneral";
+
+import Select from '@mui/material/Select';
+import ExplicitOutlinedIcon from '@mui/icons-material/ExplicitOutlined';
+
+
+import FindInPageIcon from '@mui/icons-material/FindInPage';
+import KeyRoundedIcon from '@mui/icons-material/KeyRounded';
+import HttpsRoundedIcon from '@mui/icons-material/HttpsRounded';
+import CleaningServicesRoundedIcon from '@mui/icons-material/CleaningServicesRounded';
+
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import SearchIcon from '@mui/icons-material/Search';
+import TableViewIcon from '@mui/icons-material/TableView';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+
+
+
+import { ModalPersonalized } from './components/ModalPersonalized';
+//import TablaVenta from './TablaVenta';
+import TablaUsuarioGeneral from './TablaUsuarioGeneral'
+//import TablaAccesoFormasPago from './TablaAccesoFormasPago';
+
+
+import { ModalForm } from './components/ModalForm';
+import Demo from './components/Demo';
+import { ModalTabla } from './components/ModalTabla';
+//import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+//import dayjs from 'dayjs';
+
+import PersonIcon from '@mui/icons-material/Person';
+import { Controller, useForm } from "react-hook-form";
+
+import { styled } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
+import FolderSharedIcon from '@mui/icons-material/FolderShared';
+import SellIcon from '@mui/icons-material/Sell';
+import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
+import SignpostIcon from '@mui/icons-material/Signpost';
+import PhoneIcon from '@mui/icons-material/Phone';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+
+import pruebaDatos from "../../../../data/seguridad/user-general/userGeneralJson.json";
+
+const genders = [
+  {
+    value: 'A',
+    label: 'Sucursal Pando',
+  },
+  {
+    value: 'B',
+    label: 'Sucursal America',
+  },
+  {
+    value: 'C',
+    label: 'Sucursal Salamanca',
+  },
+
+
+];
+
+const styleModal = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '38%',
+  bgcolor: 'background.paper',
+  borderRadius: '8px',
+  //border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: theme.palette.getContrastText('#DC3545'),
+  backgroundColor: '#DC3545',
+  '&:hover': {
+    backgroundColor: '#A31826',
+  },
+}));
+const AccesoUsuarioGeneral = () => {
+
+
+  const [SUBNIVEL, SET_SUBNIVEL] = useState<any>(pruebaDatos)
+
+  const [openOne, setOpenOne] = useState(false);
+  const handleClick = () => {
+    setOpenOne(!openOne);
+  };
+
+
+
+  const [valueSelect, setValueSelct] = useState('Button Prueba');
+
+  const handleChangeSelect = (event: any) => {
+    //setAge(event.target.value);
+    setValueSelct(event.target.value)
+  };
+
+
+  const [gender, setGender] = React.useState("");
+
+  const handleChange = (event: any) => {
+    setGender(event.target.value);
+  };
+
+  const [openModal, setOpenModal] = useState(false);
+
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  //two
+  const [openModalDos, setOpenModalDos] = useState(false);
+
+
+  const handleOpenModalDos = () => setOpenModalDos(true);
+  const handleCloseModalDos = () => setOpenModalDos(false);
+  //thre
+  const [openModalTres, setOpenModalTres] = useState(false);
+  const handleOpenModalTres = () => setOpenModalTres(true);
+  const handleCloseModalTres = () => setOpenModalTres(false);
+  //four
+  const [openModalCuatro, setOpenModalCuatro] = useState(false);
+  const handleOpenModalCuatro = () => setOpenModalCuatro(true);
+  const handleCloseModalCuatro = () => setOpenModalCuatro(false);
+
+
+  const [message, setMessage] = useState('');
+  const handleChangeSerach = (event: any) => {
+
+    console.log("event ", event.target.value)
+    setMessage(event.target.value);
+  };
+
+  
+
+
+  function SidebarItem(elemento: any) {
+    var { item, controlIndex } = elemento;
+
+ 
+
+    const [collapsed, setCollapsed] = React.useState(true);
+    const { title, NOMBRE, items, SUBNIVEL, LINK, lista } = item;
+
+    function toggleCollapse() {
+      setCollapsed(prevValue => !prevValue);
+    }
+
+    function onClick() {
+
+      //console.log("items ", NOMBRE, LINK, controlIndex)
+      console.log("items ", NOMBRE,controlIndex)
+      //  controlRoutersNavigation(NOMBRE, LINK)
+
+      if (Array.isArray(SUBNIVEL)) {
+        toggleCollapse();
+      }
+    }
+
+    var styleTitle ={
+      backgroundColor: (controlIndex==0  ? '#EF9A9A' : 'white') 
+    }
+
+    controlIndex = controlIndex + 1;
+
+    let expandIcon;
+    if (Array.isArray(SUBNIVEL) && SUBNIVEL.length || lista.length) {
+      expandIcon = !collapsed ? <ExpandLess /> : <ExpandMore />;
+    }
+
+
+ 
+    return (
+      <>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 2 + controlIndex * 2, color: 'black',...styleTitle}} onClick={onClick} >
+            <ListItemText sx={{ color: 'black' }} primary={NOMBRE} primaryTypographyProps={{ fontSize: '11px' }} />
+            {expandIcon}
+          </ListItemButton>
+
+        </List>
+        <Collapse in={!collapsed} timeout="auto" unmountOnExit>
+          {Array.isArray(SUBNIVEL) ? (
+            <List disablePadding dense>
+
+
+              {lista.length > 0 ?
+
+                <>
+                  {/* <table style={{ width: '90%', backgroundColor: 'white', border: '1px solid red', marginLeft: `${(40 + controlIndex * 15)}px` }}>
+
+                    {lista.map((elem: any, index: any) => (
+                      <tr>
+                        <td style={{ textAlign: 'left' }}>{elem.nameL}</td>
+                        <td style={{ textAlign: 'left' }}>{elem.value}</td>
+
+                      </tr>
+                    ))}
+
+
+
+                  </table>*/}
+                  <TablaChildUsuarioGeneral lista={lista}/>
+                </>
+                : null}
+
+              {SUBNIVEL.map((subItem, index) => (
+                <SidebarItem key={`${subItem.id}${index}`} item={subItem} controlIndex={controlIndex} />
+              ))}
+
+            </List>
+          )
+
+
+            : null
+
+          }
+        </Collapse>
+      </>
+    );
+  }
+
+  /*
+  function Sidebar({ items ,SUBNIVEL  }: any) {
+    console.log("items ...  ",items )
+    console.log("items ...  ",SUBNIVEL )
+    return (
+      <>
+        <List disablePadding dense>
+          {items.map((sidebarItem: any, index: any) => (
+            <SidebarItem
+              key={`${sidebarItem.title}${index}`}
+              item={sidebarItem}
+
+            />
+          ))}
+        </List>
+      </>
+    );
+  }
+  */
+
+  function Sidebar({ items, SUBNIVEL }: any) {
+    // console.log("datos ...  ", datos)
+    // console.log("niveles ...  ",SUBNIVEL )
+    var controlIndex = 0;
+
+
+    return (
+      <>
+
+        {SUBNIVEL?.map((sidebarItem: any, index: any) => (
+          <SidebarItem
+            key={`${sidebarItem.title}${index}`}
+            item={sidebarItem}
+            controlIndex={controlIndex}
+          />
+        ))}
+
+
+
+
+      </>
+    );
+  }
+
+  return (
+    <>
+
+
+
+
+      <div style={{
+        backgroundColor: '#DC3545', padding: '0.5%', display: 'flex', flexDirection: 'row',
+        justifyContent: 'flex-start', borderRadius: '5px', marginTop: '1%'
+        , alignItems: 'center', marginBottom: '5px'
+
+      }}
+      // onClick={handleClick}
+      >
+        <PersonAddAlt1Icon sx={{ marginLeft: '20px', color: 'white' }} />
+
+        <Typography variant="subtitle1" gutterBottom sx={{
+          marginLeft: '15px',
+          color: 'white', alignItems: 'center'
+        }} >
+          Acceso de Usuarios - Sistema General
+        </Typography>
+
+      </div>
+
+
+
+      <Box sx={{ width: '100%', backgroundColor: 'white', margin: 'auto', borderRadius: '5px' }}>
+        <Grid container columnSpacing={{ xs: 1, sm: 2, md: 2 }} >
+          <Grid item xs={12} sm={12} md={4} >
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography variant="subtitle1" gutterBottom sx={{ marginLeft: '4px', color: '#666666' }}>
+                Sucursal
+              </Typography>
+
+
+              <TextField
+                id="outlined-select-gender"
+                select
+                label="Sucursal"
+                //label={gender === "" ? "Seleccione una Opción" : ""}
+                value={gender}
+                onChange={handleChange}
+                //  sx={{ width: '100%' }}
+                // InputLabelProps={{ shrink: false }}
+
+
+                SelectProps={{
+                  MenuProps: {
+
+                  },
+                }}
+                //   margin='normal'
+                size="small"
+                variant="outlined"
+
+
+              >
+                {genders.map(option => (
+                  <MenuItem key={option.value} value={option.value}
+
+                  >
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </div>
+          </Grid>
+
+
+          <Grid item xs={12} sm={12} md={4} container
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center">
+
+            <ColorButton variant="contained" sx={{ marginTop: '34px' }}>Buscar</ColorButton>
+          </Grid>
+        </Grid>
+
+      </Box>
+
+
+
+      <br />
+
+
+
+
+
+      <br />
+
+      <Sidebar SUBNIVEL={SUBNIVEL} />
+
+     {/* <PaletaParentConslidados name="VENTAS" color="#EF9A9A" COLOR_R="239" COLOR_G="154" COLOR_B="154" />*/}
+
+      <ModalPersonalized
+        openModalPersonalized={openModal}
+        handleOpenModalPersonalized={handleOpenModal}
+        handleCloseModalPersonalized={handleCloseModal}
+        description="Deseas cargar la sugerencia del perfil?, puedes perder toda informacion guardada anteriormente"
+      />
+
+      <ModalPersonalized
+        openModalPersonalized={openModalDos}
+        handleOpenModalPersonalized={handleOpenModalDos}
+        handleCloseModalPersonalized={handleCloseModalDos}
+        description="Deseas limpiar todas la modificaciones manuales?"
+      />
+
+      <ModalForm
+        openModalPersonalized={openModalTres}
+        handleOpenModalPersonalized={handleOpenModalTres}
+        handleCloseModalPersonalized={handleCloseModalTres}
+        description="Deseas cerrar y guardar el formulario?"
+      />
+
+      <ModalTabla
+        openModalPersonalized={openModalCuatro}
+        handleOpenModalPersonalized={handleOpenModalCuatro}
+        handleCloseModalPersonalized={handleCloseModalCuatro}
+        description="Deseas cerrar y guardar el formulario?"
+      />
+
+      {/*<ModalPersonalized
+        openModalPersonalized={openModalTres}
+        handleOpenModalPersonalized={handleOpenModalTres}
+        handleCloseModalPersonalized={handleCloseModalTres}
+        description="Deseas cerrar y guardar el formulario?"
+      />*/}
+      {/*
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleModal}>
+
+          <Typography id="modal-modal-description" sx={{
+            mt: 2, textAlign: 'center', fontWeight: 'bold',
+            fontSize: '1.5rem'
+          }}>
+            Deseas cargar la sugerencia del perfil?, puedes perder toda informacion guardada anteriormente
+          </Typography>
+          <br />
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+            <Button sx={{ backgroundColor: '#7066E0' }} variant="contained" >Si</Button>
+            &nbsp; &nbsp;
+            <Button sx={{ backgroundColor: '#DC3741' }} variant="contained" >No </Button>
+            &nbsp; &nbsp;
+            <Button sx={{ backgroundColor: '##6E7881' }} variant="contained" >Cancel</Button>
+          </div>
+        </Box>
+      </Modal>
+     */}
+      {/*customModal()*/}
+    </>
+  )
+}
+
+export default AccesoUsuarioGeneral
