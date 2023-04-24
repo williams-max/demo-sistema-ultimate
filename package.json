@@ -61,7 +61,6 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
-    "react-svg-piechart": "^2.4.2",
     "react-tabs": "^6.0.0",
     "shortid": "^2.2.16",
     "styled-components": "^5.3.10",
