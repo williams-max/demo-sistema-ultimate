@@ -4,24 +4,26 @@ import ReactDOM from 'react-dom/client'
 import './index.css';
 
 
-import { BrowserRouter } from 'react-router-dom';
-import { StyledEngineProvider } from '@mui/material';
+//import { BrowserRouter } from 'react-router-dom';
+//import { StyledEngineProvider } from '@mui/material';
 
-import App from './app/App';
+import App from './App';
+//import App from './app/App';
 //import * as serviceWorker from './serviceWorker';
 // third party style
 
 
 import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
+/**
+ 
+ */
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <StyledEngineProvider injectFirst>
-    <BrowserRouter basename="/sistema">
-      <App />
-    </BrowserRouter>
-  </StyledEngineProvider>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
 )
 
 
