@@ -13,7 +13,7 @@ import App from './App';
 // third party style
 
 
-import 'perfect-scrollbar/css/perfect-scrollbar.css';
+//import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
 /**
  
@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <App />
   </React.StrictMode>,
 )
+
 
 
 /*
