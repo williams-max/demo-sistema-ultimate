@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
 
 <StyledEngineProvider injectFirst>
-    <BrowserRouter basename="/sistema">
+    <BrowserRouter >
       <App />
     </BrowserRouter>
   </StyledEngineProvider>
