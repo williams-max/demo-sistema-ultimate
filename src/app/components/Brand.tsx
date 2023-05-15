@@ -1,5 +1,7 @@
 import { Box, styled } from '@mui/material';
 import MatxLogo from './MatxLogo';
+
+import useAuth from '../hooks/useAuth';
 //import { MatxLogo } from 'app/components';
 import useSettings from '../hooks/useSettings';
 //import useSettings from 'app/hooks/useSettings';
@@ -22,6 +24,7 @@ const StyledSpan = styled(Span)(({ mode }) => ({
 
 const Brand = ({ children }: any) => {
   const { settings } = useSettings();
+  const {user} = useAuth();
   const leftSidebar = settings.layout1Settings.leftSidebar;
   const { mode } = leftSidebar;
 
@@ -36,7 +39,7 @@ const Brand = ({ children }: any) => {
           </div>
           <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
             <AccountCircleIcon sx={{}} />
-            <h6 style={{marginLeft:'10px'}}>ADOLFO MONDOCORRE </h6>
+            <h6 style={{marginLeft:'10px'}}>{user?.email} </h6>
           </div>
         </StyledSpan>
       </Box>

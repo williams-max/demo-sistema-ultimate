@@ -58,6 +58,7 @@ const AppEchart = Loadable(lazy(() => import('./views/charts/echarts/AppEchart')
 const Analytics = Loadable(lazy(() => import('./views/dashboard/Analytics')));
 
 //facturacion
+/*
 const facturacionRoutes = [
 
   { path: '/facturacion/llave', element: < LlavePage/> },
@@ -137,11 +138,7 @@ const recetasRoutes = [
   { path: '/receta/receta-combo', element: <RecetaComboPage /> },
   { path: '/receta/receta', element: <CrearRecetaPage /> }
 ];
-
-
-
-
-
+*/
 
 
 const routes = [
@@ -151,27 +148,28 @@ const routes = [
         <MatxLayout />
       </AuthGuard>
     ),
+   
     children: [
       //reportes
-      ...facturacionRoutes,
+      //...facturacionRoutes,
       //reportes
-      ...perfilesRoutes,
+     // ...perfilesRoutes,
       //reportes
-      ...reportesRoutes,
+      //...reportesRoutes,
       //usuarios
-      ...usuariosRoutes,
+      //...usuariosRoutes,
       //configuraciones
-      ...configuracionesRoutes,
+      //...configuracionesRoutes,
       //seguridad
-      ...seguridadRoutes,
+      //...seguridadRoutes,
       //ventas
-      ...ventasRoutes,
+      //...ventasRoutes,
       //pedidos
-      ...pedidosRoutes,
+      //...pedidosRoutes,
       //recetas
-      ...recetasRoutes,
+      //...recetasRoutes,
       //materialRoutes
-      ...materialRoutes,
+      //...materialRoutes,
       // dashboard route
       {
         path: '/dashboard/default',
@@ -186,6 +184,7 @@ const routes = [
         auth: authRoles.editor
       }
     ]
+   
   },
 
   // session pages route

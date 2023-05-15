@@ -79,7 +79,6 @@ const MatxVerticalNavExpansionPanel = ({ item, children, mode }: any) => {
   const componentHeight = useRef(0);
   const { pathname } = useLocation();
   const { name, icon, iconText, badge } = item;
-  //const { NOMBRE, icon, iconText, badge } = item;
 
   const handleClick = () => {
     componentHeight.current = 0;

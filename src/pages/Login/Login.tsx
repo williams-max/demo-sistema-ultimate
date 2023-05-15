@@ -17,6 +17,7 @@ import axios from 'axios';
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
 import { Controller, useForm } from "react-hook-form";
+import useAuth from '../../app/hooks/useAuth';
 
 
 
@@ -59,6 +60,8 @@ const CircularLoading = () => (
 const Login = () => {
 
   const urlLogin = "http://192.168.0.36:8080/SistemaGeneralBLocal/login";
+  
+  const { login } = useAuth();
   const navigate = useNavigate()
   //first  local storage 
   //const { login } = useAuth()
@@ -86,68 +89,85 @@ const Login = () => {
   const onSubmit = async (data: any) => {
 
 
-    //clickHandler("circular")
-    setLoading(true);
+    //setLoading(true);
     console.log(data);
-   // const { usuario, password } = data;
+    const { usuario, password } = data;
 
-
-    await submitData()
-
-  /*
     try {
-      const respuesta = await axios.post('http://192.168.0.20/SistemaGeneralB/index.php/login2', {
-        // "user": "amondocorre",
-        // "pass": "Capress0"
+      await login(usuario,password);
+      navigate('/');
+    } catch (e) {
+      console.log(e)
+    }
 
-        "user": user,
-        "pass": pass
-
+    /*
+    try {
+      //const respuesta = await axios.post('https://sistemageneralb.azurewebsites.net//index.php/login', {
+      const respuesta = await axios.post('https://sistemageneral-ba.azurewebsites.net/login', {
+        "usuario": usuario,
+        "password": password
+     
       })
+      console.log("rest", respuesta.data)
+    } catch (error) {
 
+    }*/
+    //await submitData()
 
-      console.log("res ", respuesta.data)
-      if (respuesta?.data) {
-        if (respuesta.data.status) {
-
-          console.log("nombre completo ...", respuesta.data.data.usuario[0].NOMBRE_COMPLETO);
-          console.log("menu  ...", respuesta.data.data.menu);
-
-          var name = respuesta.data.data.usuario[0].NOMBRE_COMPLETO;
-          var menu = respuesta.data.data.menu;
-
-          localStorage.setItem("user_menu", JSON.stringify(menu));
-          localStorage.setItem("user_name", name);
-
-
-          //dispatch({ type: types.updateUser, payload: name })
-          //dispatch({ type: types.authLogin })
-          //1 capturar de datos del usuario
-          //2 paso guargarlo en el useContext
-          navigate('/home')
+    /*
+      try {
+        const respuesta = await axios.post('http://192.168.0.20/SistemaGeneralB/index.php/login2', {
+          // "user": "amondocorre",
+          // "pass": "Capress0"
+  
+          "user": user,
+          "pass": pass
+  
+        })
+  
+  
+        console.log("res ", respuesta.data)
+        if (respuesta?.data) {
+          if (respuesta.data.status) {
+  
+            console.log("nombre completo ...", respuesta.data.data.usuario[0].NOMBRE_COMPLETO);
+            console.log("menu  ...", respuesta.data.data.menu);
+  
+            var name = respuesta.data.data.usuario[0].NOMBRE_COMPLETO;
+            var menu = respuesta.data.data.menu;
+  
+            localStorage.setItem("user_menu", JSON.stringify(menu));
+            localStorage.setItem("user_name", name);
+  
+  
+            //dispatch({ type: types.updateUser, payload: name })
+            //dispatch({ type: types.authLogin })
+            //1 capturar de datos del usuario
+            //2 paso guargarlo en el useContext
+            navigate('/home')
+          } else {
+            setLoading(false);
+            setErrorValueEmpty(true);
+          }
         } else {
           setLoading(false);
           setErrorValueEmpty(true);
         }
-      } else {
         setLoading(false);
+  
+      } catch (error) {
+        setLoading(false)
         setErrorValueEmpty(true);
+        // console.log(error)
+  
       }
-      setLoading(false);
-
-    } catch (error) {
-      setLoading(false)
-      setErrorValueEmpty(true);
-      // console.log(error)
-
-    }
-  */
+    */
   };
 
   const submitData = async () => {
     try {
       //const respuesta = await axios.post('https://sistemageneralb.azurewebsites.net//index.php/login', {
-      const respuesta = await axios.post('https://sistemageneral-ba.azurewebsites.net/login', {
+      const respuesta = await axios.post('http://192.168.0.8:8080/SistemaGeneralBLocal/login', {
         "usuario": "amondocorre",
         "password": "Capresso"
         /*

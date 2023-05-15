@@ -158,7 +158,7 @@ const MatxVerticalNav = ({ items }:any) => {
                   </Fragment>
                 )}
                 <StyledText mode={mode} className="sidenavHoverShow">
-                  {item.name}{/*item.NOMBRE*/}
+                  {item.name}
                 </StyledText>
 
                 <Box mx="auto" />

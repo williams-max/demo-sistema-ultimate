@@ -36,6 +36,8 @@ import SearchBar from '@mkyy/mui-search-bar';
 import dataUserJson from '../../../data/ventas/dataVentasJson.json'
 //import { DesktopDatePicker } from '@mui/lab';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import AplicationConnect from '../../../core/api/AplicationConnect';
+import axios from 'axios';
 //import dayjs from 'dayjs';
 
 
@@ -73,6 +75,60 @@ const styleModal = {
 };
 
 const Venta = () => {
+
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.W3siSURfVVNVQVJJTyI6MTIsIlVTVUFSSU8iOiJhbW9uZG9jb3JyZSIsIkNJIjoiNTI4MDE1MUNCIiwiTk9NQlJFIjoiQURPTEZPIiwiQVBfUEFURVJOTyI6Ik1PTkRPQ09SUkUiLCJBUF9NQVRFUk5PIjoiR1VJWkFEQSIsIkVNQUlMIjoiYW1vbmRvY29ycmVAY2FwcmVzc29jYWZlLmNvbSIsIkNFTFVMQVIiOjc1OTM0NDQzLCJOT01CUkVfQ09NUExFVE8iOiJBRE9MRk8gTU9ORE9DT1JSRSBHVUlaQURBIn1d.pMnRYGVOlVa5txsECbTAoHnF-LwIxDzHyQWXuyOSJKc"
+
+  const instance = axios.create({
+    baseURL: 'http://192.168.0.90:8080/SistemaGeneralBLocal',
+
+    headers: { 'Authorization': 'Bearer ' + token }
+  });
+  useEffect(() => {
+    // Actualiza el título del documento usando la API del navegador
+    loadDataVenta()
+   // testAxios();
+  }, []);
+
+
+  const testAxios = async () => {
+
+
+    try {
+
+      const respuesta = await instance.get('/menu')
+
+      /*const respuesta = await instance.post('/botones/42', {
+        "sucursal": "4",
+        "fecha": "2023-04-24"
+      })*/
+      
+      /*const respuesta = await instance.post('/ventasSucursal', {
+        "sucursal": "4",
+        "fecha": "2023-04-24"
+      })*/
+
+      console.log("respuesta ", respuesta.data)
+
+    } catch (error) {
+
+    }
+
+  }
+
+
+  const loadDataVenta = async () => {
+    try {
+      const respuesta = await AplicationConnect.post<any>('/ventasSucursal', {
+        "sucursal": "4",
+        "fecha": "2023-04-24"
+      })
+
+      console.log("respuesta ****", respuesta.data)
+    } catch (error) {
+
+    }
+
+  }
 
 
   const [openOne, setOpenOne] = useState(false);
@@ -228,12 +284,12 @@ const Venta = () => {
       </div>
 
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DesktopDatePicker sx={{ width: '190px',height:'10px' }}
-     
+        <DesktopDatePicker sx={{ width: '190px', height: '10px' }}
 
-         // label="Basic example"
-          //value={value}
-          
+
+        // label="Basic example"
+        //value={value}
+
 
         />
 

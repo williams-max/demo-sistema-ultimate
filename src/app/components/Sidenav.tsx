@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Scrollbar from 'react-perfect-scrollbar';
 import { styled } from '@mui/material';
 import MatxVerticalNav from './MatxVerticalNav/MatxVerticalNav';
@@ -9,13 +9,14 @@ import useSettings from '../hooks/useSettings';
 import { navigations } from '../navigations';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 //import { navigations } from 'app/navigations';
+import dataJson from '../../data/example.json'
 
 const StyledScrollBar = styled(Scrollbar)(() => ({
   paddingLeft: '1rem',
   paddingRight: '1rem',
   position: 'relative',
 
-  
+
 
 }));
 
@@ -31,10 +32,29 @@ const SideNavMobile = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: { display: 'none' }
 }));
 
-const Sidenav = ({ children }:any) => {
+const Sidenav = ({ children }: any) => {
   const { settings, updateSettings } = useSettings();
+  const [dataNavigations, setDataNavigations] = useState<any>([])
+  useEffect(() => {
+    // Actualiza el título del documento usando la API del navegador
+    console.log("import data json ",convertToNestedMenu(dataJson, 0)  )
 
-  const updateSidebarMode = (sidebarSettings:any) => {
+    setDataNavigations(convertToNestedMenu(dataJson, 0))
+  }, []);
+
+  function convertToNestedMenu(arr:any, parentId:any) {
+    return arr
+      .filter((item) => item.NIVEL_SUPERIOR === parentId)
+      .map((item) => {
+        if(item.TIPO==='acceso')return item;
+        return {
+            ...item,
+                children:[... convertToNestedMenu(arr, item.ITEM)],
+          }
+      });
+  }
+
+  const updateSidebarMode = (sidebarSettings: any) => {
     let activeLayoutSettingsName = settings.activeLayout + 'Settings';
     let activeLayoutSettings = settings[activeLayoutSettingsName];
 
@@ -55,8 +75,9 @@ const Sidenav = ({ children }:any) => {
       <StyledScrollBar options={{ suppressScrollX: true }}>
         {children}
 
-  
-        <MatxVerticalNav items={navigations} />
+
+        {/*<MatxVerticalNav items={dataNavigations} />*/}
+          <MatxVerticalNav items={navigations} /> 
 
       </StyledScrollBar>
 
